@@ -33,6 +33,7 @@ public void getData(){
                 String newUrl = image_url+url[url.length-1]+".png";
                 pokemon.setUrl(newUrl);
                 pokemons.add(pokemon);
+
             }
             int count = response.body().getCount();
             PokemonResponse pokemonResponse =new PokemonResponse(count,"","",pokemons);
@@ -47,5 +48,8 @@ public void getData(){
         }
     });
 
+
+
 }
+
 }
