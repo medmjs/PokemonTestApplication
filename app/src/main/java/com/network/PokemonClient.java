@@ -1,7 +1,6 @@
 package com.network;
 
-import com.google.gson.Gson;
-import com.model.PokemonResponse;
+import com.example.pokemontestapplication.model.PokemonResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

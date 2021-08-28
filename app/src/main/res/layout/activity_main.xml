@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/main_tv_title_count"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:padding="8dp"
-        android:text=""
+        android:text="Count :"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/main_tv_count"
         app:layout_constraintHorizontal_bias="0.15"

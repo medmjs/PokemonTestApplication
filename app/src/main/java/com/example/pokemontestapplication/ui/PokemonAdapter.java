@@ -1,19 +1,18 @@
-package com;
+package com.example.pokemontestapplication.ui;
 
 ;
-import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.pokemontestapplication.R;
-import com.model.Pokemon;
+import com.example.pokemontestapplication.model.Pokemon;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import java.util.List;
 
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder> {
 
+    private static final String TAG = "PokemonAdapter";
     List<Pokemon> pokemonModels = new ArrayList<>();
 
 
@@ -55,6 +55,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     @Override
     public int getItemCount() {
+        Log.d(TAG,"MEDMJS ADAPTER => size : " +pokemonModels.size());
         return pokemonModels.size();
     }
 

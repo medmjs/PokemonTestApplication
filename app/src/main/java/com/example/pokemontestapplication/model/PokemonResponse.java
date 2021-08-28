@@ -1,4 +1,4 @@
-package com.model;
+package com.example.pokemontestapplication.model;
 
 import java.util.ArrayList;
 
