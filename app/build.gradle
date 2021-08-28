@@ -33,6 +33,9 @@ android {
 
 dependencies {
 
+
+    def room_version = "2.2.5"
+
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
@@ -47,4 +50,13 @@ dependencies {
 
     //Picaso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+    def lifecycle_version = "2.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 }

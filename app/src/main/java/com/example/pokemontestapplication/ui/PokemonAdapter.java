@@ -1,19 +1,17 @@
-package com;
+package com.example.pokemontestapplication.ui;
 
 ;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.pokemontestapplication.R;
-import com.model.Pokemon;
+import com.example.pokemontestapplication.model.Pokemon;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.model;
+package com.example.pokemontestapplication.model;
 
 public class Pokemon {
     private String name;

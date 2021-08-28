@@ -1,6 +1,6 @@
 package com.network;
 
-import com.model.PokemonResponse;
+import com.example.pokemontestapplication.model.PokemonResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
