@@ -8,13 +8,18 @@ import com.example.pokemontestapplication.model.Pokemon;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
 @Dao
 public interface PokemonDao {
 
     @Insert
-    public void setPokemon(Pokemon pokemon);
+     Completable setPokemon(Pokemon pokemon);      //using rxjava
+//    public void setPokemon(Pokemon pokemon);
 
     @Query("SELECT * FROM POKEMON_TABLE")
-    public List<Pokemon> getPokemons();
+     Single<List<Pokemon>> getPokemons();               //using rxjava
+//    public List<Pokemon> getPokemons();
 
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 
@@ -20,6 +21,11 @@ import com.example.pokemontestapplication.model.Pokemon;
 import com.example.pokemontestapplication.model.PokemonResponse;
 
 import java.util.ArrayList;
+
+import io.reactivex.CompletableObserver;
+import io.reactivex.Scheduler;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -63,15 +69,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void insertDataInRoom(ArrayList<Pokemon> pokemons){
-        Thread thread =new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 for (Pokemon pokemon:pokemons) {
-                    pokemonDB.pokemonDao().setPokemon(pokemon);
+                    pokemonDB.pokemonDao().setPokemon(pokemon)
+                    .subscribeOn(Schedulers.computation())
+                    .subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            Log.d(TAG,"MedMjs RXJAVA => onSubscribe : "+d);
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Log.d(TAG,"MedMjs RXJAVA => onComplete : ");
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d(TAG,"MedMjs RXJAVA => onError : "+e);
+
+                        }
+                    });
                 }
-            }
-        });
-        thread.start();
     }
 
     @Override

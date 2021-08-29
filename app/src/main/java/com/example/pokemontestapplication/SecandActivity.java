@@ -12,6 +12,12 @@ import com.example.pokemontestapplication.model.Pokemon;
 import com.example.pokemontestapplication.ui.PokemonAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class SecandActivity extends AppCompatActivity {
 
@@ -26,23 +32,36 @@ public class SecandActivity extends AppCompatActivity {
         setContentView(secandBinding.getRoot());
         pokemonDB = PokemonDB.getInstanse(this);
 
-        ArrayList<Pokemon> pokemons = getDataFromRoom();
-        Log.d(TAG,"MEDMJS => size : "+pokemons.size());
-        Log.d(TAG,"MEDMJS => name : "+pokemons.get(0).getName());
-        Log.d(TAG,"MEDMJS => url : "+pokemons.get(0).getUrl());
+         getDataFromRoom();
 
 
-        fillRecycleView(pokemons);
+
+
 
 
     }
 
-    public ArrayList<Pokemon> getDataFromRoom() {
-        ExtendThread extendThread =new ExtendThread();
-        extendThread.start();
+    public void getDataFromRoom() {
+        pokemonDB.pokemonDao().getPokemons()
+        .subscribeOn(Schedulers.computation())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new SingleObserver<List<Pokemon>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-        ArrayList<Pokemon> pokemons =extendThread.getPokemons();
-        return pokemons;
+            }
+
+            @Override
+            public void onSuccess( List<Pokemon> pokemons) {
+                fillRecycleView((ArrayList<Pokemon>) pokemons);
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
 
     }
 
@@ -54,16 +73,5 @@ public class SecandActivity extends AppCompatActivity {
         secandBinding.secandRv.setAdapter(adapter);
     }
 
-    class ExtendThread extends Thread{
-        ArrayList<Pokemon> pokemons;
 
-        public ArrayList<Pokemon> getPokemons() {
-            return pokemons;
-        }
-
-        @Override
-        public void run() {
-            pokemons = (ArrayList<Pokemon>) pokemonDB.pokemonDao().getPokemons();
-        }
-    }
 }
